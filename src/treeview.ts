@@ -2,6 +2,8 @@ import * as vscode from 'vscode';
 
 
 export class TreeItemNode extends vscode.TreeItem {
+
+    children: TreeItemNode[] = [];
     constructor(
         public readonly label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
@@ -9,6 +11,7 @@ export class TreeItemNode extends vscode.TreeItem {
     ) {
         super(label, collapsibleState);
     }
+
 }
 
 export class TreeProvider implements vscode.TreeDataProvider<TreeItemNode> {
@@ -32,11 +35,12 @@ export class TreeProvider implements vscode.TreeDataProvider<TreeItemNode> {
         if (!element) {
             return Promise.resolve(this.items);
         }
-        return Promise.resolve([]);
+        return Promise.resolve(element.children);
     }
 
     refresh(): void {
         this._onDidChangeTreeData.fire(undefined);
     }
+
 }
 

@@ -14,6 +14,29 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "grid5000",
+      "properties": {
+        "g5k-plugin.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable g5k-plugin"
+        },
+        "g5k-plugin.url": {
+          "type": "string",
+          "default": "https://api.grid5000.fr/stable",
+          "description": "API URL"
+        },
+        "g5k-plugin.username": {
+          "type": "string",
+          "description": "username"
+        },
+        "g5k-plugin.password": {
+          "type": "string",
+          "description": "password"
+        }
+      }
+    },
     "commands": [
       {
         "command": "g5k-plugin.helloWorld",
@@ -23,8 +46,8 @@
     "views": {
       "explorer": [
         {
-          "id": "sitesView",
-          "name": "websites",
+          "id": "g5ksitesView",
+          "name": "g5k",
           "when": "explorerViewletVisible"
         }
       ]
